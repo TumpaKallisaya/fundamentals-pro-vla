@@ -1,0 +1,26 @@
+.home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  font-family: system-ui, -apple-system, sans-serif;
+  gap: 0.5rem;
+}
+
+.status {
+  font-size: 1.1rem;
+  font-weight: 600;
+
+  &--connected {
+    color: #1a7f37;
+  }
+
+  &--error {
+    color: #c62828;
+  }
+
+  &--loading {
+    color: #666;
+  }
+}
