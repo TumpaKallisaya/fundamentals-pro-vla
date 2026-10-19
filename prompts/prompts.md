@@ -45,3 +45,8 @@ define que el repositorio externo sera: https://github.com/TumpaKallisaya/fundam
 
 ## Prompt 6
 
+Se debe manejar para el backend la arquitectura exagonal, establece la estructura de paquetes y archivos de configuración necesarios para el posterior desarrollo y mantenimiento de los módulos, así como elaborar los test unitarios correspondientes para cada controlador utilizando mockito
+para el frontend utiliza la arquitectura orientada a funcionalidades (Feature-Based Architecture), establece la estructura de paquetes y archivos de configuración necesarios para el psoterior desarrollo y mantenimiento de los módulos
+establece este estandar en el tech-stack.md como obligatoria para cualquier agente que realice desarollos o mantenimientos al sistema y corrige los archivos .md utilizados en la fase 0 para que haya coherencia entre estos ultimos requerimientos y dichos archivos
+establece en el backend y frontend las arquitecturas solicitadas
+
