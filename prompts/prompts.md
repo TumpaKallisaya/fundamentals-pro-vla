@@ -37,3 +37,11 @@ Crea:
 Guiate utilizando specs/mission.md y specs/tech-stack.md.
 
 Si requieres hacer preguntas para aclarar aspectos lógicos o técnicos pregunta antes de escribir a disco.
+
+## Prompt 5 
+
+Agrega un grupo de tareas al plan para crear una página de inicio mínimo en el frontend conectado al backend y actualiza el resto de la especificación de la funcionalidad para que esté sincronizada.
+define que el repositorio externo sera: https://github.com/TumpaKallisaya/fundamentals-pro-vla.git
+
+## Prompt 6
+
