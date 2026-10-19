@@ -35,7 +35,7 @@ export class DashboardComponent {
   private readonly service = inject(DashboardService);
 
   readonly desde = signal<string>(this.primerDiaMesEt());
-  readonly hasta = signal<string>(this.hoyEt());
+  readonly hasta = signal<string>(this.ultimoDiaMesEt());
   readonly indice = signal<string>('NAS100');
 
   readonly eventos = signal<EventoDto[]>([]);
@@ -208,5 +208,11 @@ export class DashboardComponent {
 
   private primerDiaMesEt(): string {
     return `${this.hoyEt().slice(0, 8)}01`;
+  }
+
+  private ultimoDiaMesEt(): string {
+    const [y, m] = this.hoyEt().split('-');
+    const ultimoDia = new Date(Number(y), Number(m), 0).getDate();
+    return `${y}-${m}-${String(ultimoDia).padStart(2, '0')}`;
   }
 }

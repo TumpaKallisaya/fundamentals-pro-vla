@@ -1,6 +1,8 @@
 spring:
   application:
     name: backend-funds
+  config:
+    import: optional:file:.env[.properties]
   datasource:
     url: jdbc:postgresql://localhost:5432/funds
     username: funds

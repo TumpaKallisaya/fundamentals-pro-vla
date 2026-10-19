@@ -46,6 +46,9 @@ public class FredBlsValorActualAdapter implements ValorActualPort {
         this.objectMapper = objectMapper;
         this.apiKey = apiKey;
         this.series = cargarSeries();
+        if (apiKey == null || apiKey.isBlank()) {
+            log.warn("FRED apiKey no configurada; no se resolverá el valor 'actual'.");
+        }
     }
 
     @Override
