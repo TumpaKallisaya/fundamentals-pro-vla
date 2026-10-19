@@ -46,3 +46,26 @@ Serie de grupos de tareas numerados. Cada grupo es un incremento verificable.
 2. Arrancar frontend y confirmar que sirve la página de inicio conectada al backend.
 3. Documentar cómo arrancar el entorno completo en el `README.md`.
 4. Commit inicial en `main` y push al remoto `origin`.
+
+## Grupo 7 — Arquitectura hexagonal (backend)
+
+1. Reorganizar los paquetes del backend en `domain`, `application` e `infrastructure`
+   (hexagonal: puertos y adaptadores).
+2. Reubicar el health check: `HealthStatus` (dominio), `HealthUseCase` (puerto de entrada),
+   `HealthService` (aplicación) y `HealthController` (adaptador de entrada REST).
+3. Documentar los paquetes vacíos (puertos de salida, servicios de dominio, adaptadores de
+   salida) con `package-info.java` como convención para fases posteriores.
+4. Prueba unitaria de cada controlador con **Mockito** (mock del puerto de entrada).
+
+## Grupo 8 — Arquitectura Feature-Based (frontend)
+
+1. Crear las carpetas `core/`, `shared/` y `features/` bajo `src/app`.
+2. Reubicar el servicio de salud en `features/health/` (servicio + modelo).
+3. Documentar la convención en `src/app/README.md` y en los README de cada carpeta.
+4. Verificar compilación (`ng build`) y pruebas (`ng test`).
+
+## Grupo 9 — Estándar documentado y sincronizado
+
+1. Declarar en `tech-stack.md` ambas arquitecturas como **obligatorias** para cualquier agente.
+2. Sincronizar `requirements.md`, `validation.md`, `roadmap.md` y `README.md` con estos requisitos.
+3. Commit y push al remoto `origin`.

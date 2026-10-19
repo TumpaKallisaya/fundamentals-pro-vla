@@ -11,8 +11,12 @@ expansión.
 - Generar proyecto base Angular 22.2.x (standalone components + Signals).
 - Levantar PostgreSQL 18.6 (local vía Docker) y conectar el backend (Flyway/Liquibase).
 - Configurar zona horaria America/New_York y convenciones de código/CI básica.
+- Establecer la arquitectura **hexagonal** (Puertos y Adaptadores) en el backend.
+- Establecer la arquitectura **Feature-Based** (orientada a funcionalidades) en el frontend.
+- Pruebas unitarias de controladores del backend con **Mockito**.
 
-**Resultado**: ambos proyectos corren y el backend conecta a PostgreSQL.
+**Resultado**: ambos proyectos corren, el backend conecta a PostgreSQL, y las arquitecturas
+obligatorias (y sus pruebas) quedan establecidas como base de las siguientes fases.
 
 ## Fase 1 — Catálogo de indicadores y fuentes
 

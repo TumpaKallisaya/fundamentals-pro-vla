@@ -21,10 +21,16 @@ En esta fase se debe entregar:
    - CORS habilitado para el origen del frontend.
    - Dependencias base: Web, Data JPA, Validation, Actuator, PostgreSQL, Flyway.
    - Configuración de zona horaria **America/New_York**.
+   - **Arquitectura hexagonal** (Puertos y Adaptadores): paquetes `domain`, `application` e
+     `infrastructure`, con puertos de entrada/salida (`domain.port.in` / `domain.port.out`) y
+     adaptadores (`infrastructure.adapter`).
+   - **Prueba unitaria** de cada controlador con **Mockito**.
 3. **Frontend** `frontend-funds`:
    - Angular **22.2.x**, standalone components + Signals.
    - Página de inicio mínima **conectada al backend** (consume `GET /api/health` y muestra el
      estado de conexión).
+   - **Arquitectura Feature-Based**: carpetas `core/`, `shared/` y `features/` bajo `src/app`,
+     con la funcionalidad de salud en `features/health/`.
 4. **Base de datos** PostgreSQL **18.6** levantada con **Docker Compose** (solo la BD).
    - Backend conectado a la BD.
    - **Flyway** habilitado con una migración inicial para validar el pipeline.
@@ -42,6 +48,8 @@ En esta fase se debe entregar:
 | Migraciones | Flyway |
 | Ejecución del entorno | Solo PostgreSQL en Docker; backend/frontend en modo dev local |
 | Control de versiones | Solo Git, sin CI por ahora |
+| Arquitectura backend | Hexagonal (Puertos y Adaptadores) |
+| Arquitectura frontend | Feature-Based (orientada a funcionalidades) |
 
 ## Convenciones
 
@@ -51,6 +59,9 @@ En esta fase se debe entregar:
 - **Zona horaria**: America/New_York (ET) para toda fecha/hora mostrada o calculada.
 - **Ramas**: `main` como rama principal.
 - **Repositorio remoto (origin)**: `https://github.com/TumpaKallisaya/fundamentals-pro-vla.git`.
+- **Paquetes backend (hexagonal)**: `domain` (con `model`, `port.in`, `port.out`, `service`),
+  `application.service` e `infrastructure` (con `adapter.in.web`, `adapter.out`, `config`).
+- **Carpetas frontend (feature-based)**: `core/`, `shared/` y `features/<nombre>/` bajo `src/app`.
 
 ## Fuera de alcance (fases posteriores)
 

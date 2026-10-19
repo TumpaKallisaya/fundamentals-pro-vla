@@ -14,6 +14,12 @@ Cómo determinar si la implementación fue exitosa y puede integrarse al código
 - [ ] `frontend-funds` compila (`ng build`) sin errores y sirve la página de inicio.
 - [ ] La página de inicio muestra el estado "conectado" al backend (consume `GET /api/health`).
 - [ ] La zona horaria del backend está configurada a America/New_York.
+- [ ] El backend sigue **arquitectura hexagonal** (paquetes `domain`/`application`/`infrastructure`).
+- [ ] Cada controlador del backend tiene **prueba unitaria con Mockito** y `mvn test` pasa.
+- [ ] El frontend sigue **arquitectura Feature-Based** (carpetas `core/`/`shared/`/`features/`).
+- [ ] `tech-stack.md` declara ambas arquitecturas como **obligatorias** para cualquier agente.
+- [ ] Los archivos `.md` de la Fase 0 (`plan`, `requirements`, `validation`, `roadmap`, `README`)
+  están sincronizados con estos requisitos.
 - [ ] El `README.md` documenta cómo levantar el entorno completo.
 
 ## Verificación manual (comandos)
@@ -41,6 +47,18 @@ cd frontend-funds
 npm install
 ng serve
 # abrir http://localhost:4200 y verificar que muestra "conectado" al backend
+```
+
+### Pruebas unitarias
+
+```
+# backend (Mockito)
+cd backend-funds
+./mvnw test          # Windows: mvnw.cmd test
+
+# frontend (Vitest)
+cd frontend-funds
+ng test --watch=false
 ```
 
 ## Criterios para integrar al principal

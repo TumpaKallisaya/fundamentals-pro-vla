@@ -8,6 +8,72 @@
 | Frontend | Angular | 22.2.x (última estable) | `frontend-funds` |
 | Base de datos | PostgreSQL | 18.6 (última estable) | — |
 
+## Arquitecturas obligatorias
+
+> **Obligatorio para cualquier agente** que realice desarrollos o mantenimientos del sistema.
+> El backend **debe** seguir arquitectura **hexagonal** (Puertos y Adaptadores) y el frontend
+> **debe** seguir arquitectura **orientada a funcionalidades** (Feature-Based). No se aceptan
+> cambios que rompan esta estructura.
+
+### Backend — Hexagonal (Puertos y Adaptadores)
+
+El backend separa el núcleo de negocio (dominio + aplicación) de la infraestructura, comunicándolos
+mediante **puertos** (interfaces) y **adaptadores** (implementaciones).
+
+```
+com.funds.backend
+├── BackendFundsApplication.java   # punto de entrada (zona horaria America/New_York)
+├── domain/                        # núcleo de negocio (sin dependencias de framework)
+│   ├── model/                     #   entidades, value objects, records
+│   ├── port/
+│   │   ├── in/                    #   puertos de entrada (interfaces de casos de uso)
+│   │   └── out/                   #   puertos de salida (interfaces de repos/conectores)
+│   └── service/                   #   servicios de dominio (lógica pura)
+├── application/                   # capa de aplicación (orquestación de casos de uso)
+│   └── service/                   #   implementaciones de los puertos de entrada
+└── infrastructure/                # capa de infraestructura (adaptadores y configuración)
+    ├── adapter/
+    │   ├── in/web/                #   adaptadores de entrada (controladores REST)
+    │   └── out/                   #   adaptadores de salida (JPA, clientes HTTP, scraping)
+    └── config/                    #   clases @Configuration (CORS, beans, ...)
+```
+
+Reglas:
+
+- Flujo: `adaptador de entrada → puerto de entrada → servicio de aplicación → puerto de salida → adaptador de salida`.
+- `domain` no depende de ningún framework (solo JDK); `application` orquesta casos de uso y solo
+  puede usar Spring para inyección de dependencias.
+- `infrastructure` concentra todo detalle técnico (HTTP, JPA, clientes, configuración).
+- Cada adaptador implementa exactamente un puerto.
+- Los controladores (adaptadores de entrada) solo traducen HTTP; **no contienen lógica de negocio**.
+- Todo controlador debe tener su prueba unitaria con **Mockito**.
+
+### Frontend — Feature-Based (orientada a funcionalidades)
+
+El frontend se organiza por **funcionalidad/dominio**, no por tipo de archivo.
+
+```
+src/app/
+├── app.ts                 # componente raíz (shell)
+├── app.config.ts          # providers globales
+├── app.routes.ts          # rutas raíz (lazy loading hacia las features)
+├── core/                  # singleton: servicios globales, interceptores, guards, estado
+├── shared/                # reutilizable: componentes, directivas, pipes, modelos comunes
+└── features/              # una carpeta por funcionalidad
+    └── <feature>/
+        ├── <feature>.component.ts
+        ├── <feature>.service.ts
+        ├── <feature>.model.ts
+        ├── <feature>.routes.ts   (opcional)
+        └── *.spec.ts
+```
+
+Reglas:
+
+- Cada feature es autocontenida y se registra en `app.routes.ts` (idealmente con lazy loading).
+- `core/` y `shared/` no deben depender de ninguna feature.
+- Las features no se importan entre sí; se comunican vía `core/` o el router.
+
 ## Backend — `backend-funds` (Spring Boot)
 
 - **Framework**: Spring Boot **4.1.1** (última versión estable, línea 4.x).
@@ -95,3 +161,5 @@
 - Eventos iniciales: **alto y medio impacto** de EE.UU. para NAS100 (Nasdaq 100) y
   SP500 (S&P 500).
 - Extensibilidad: nuevos sectores (forex, cripto) se añaden vía catálogo de indicadores.
+- Arquitecturas obligatorias: **hexagonal** (backend) y **Feature-Based** (frontend), documentadas
+  arriba; todo agente debe respetarlas.

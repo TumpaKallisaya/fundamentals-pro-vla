@@ -13,10 +13,14 @@
 ```
 fundamentals-pro-vla/
 ├── specs/            # Constitución y especificaciones (mission, tech-stack, roadmap, fases)
-├── backend-funds/    # Backend Spring Boot 4.1.1 (Java 21, Maven)
-├── frontend-funds/   # Frontend Angular 22.2.x (TypeScript)
+├── backend-funds/    # Backend Spring Boot 4.1.1 (Java 21, Maven) — arquitectura hexagonal
+├── frontend-funds/   # Frontend Angular 22.2.x (TypeScript) — arquitectura feature-based
 └── compose.yaml      # PostgreSQL 18.6 (Docker Compose)
 ```
+
+> **Arquitecturas obligatorias**: backend **hexagonal** (Puertos y Adaptadores:
+> `domain` / `application` / `infrastructure`) y frontend **Feature-Based**
+> (`core/` / `shared/` / `features/`). Ver `specs/tech-stack.md`.
 
 ## Requisitos previos
 
@@ -61,5 +65,6 @@ Abrir http://localhost:4200 → la página de inicio muestra "Conectado al backe
 
 ## Estado
 
-- Fase 0 (fundamentos y entorno) implementada: backend y frontend compilan, estructura del
-  monorepo, PostgreSQL vía Docker Compose y página de inicio conectada al backend.
+- Fase 0 (fundamentos y entorno) implementada: backend y frontend compilan, arquitecturas
+  hexagonal (backend) y feature-based (frontend) establecidas, PostgreSQL vía Docker Compose,
+  página de inicio conectada al backend y pruebas unitarias (Mockito en backend).
