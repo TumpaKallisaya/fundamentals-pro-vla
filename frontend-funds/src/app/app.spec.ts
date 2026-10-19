@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
 import { App } from './app';
-import { HealthService } from './health.service';
+import { HealthService } from './features/health/health.service';
 
 describe('App', () => {
   beforeEach(async () => {

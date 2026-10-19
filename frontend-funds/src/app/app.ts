@@ -1,5 +1,5 @@
 import { Component, OnInit, signal } from '@angular/core';
-import { HealthService } from './health.service';
+import { HealthService } from './features/health/health.service';
 
 type ConnectionState = 'loading' | 'connected' | 'error';
 
