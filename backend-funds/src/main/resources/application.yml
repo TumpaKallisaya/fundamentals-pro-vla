@@ -33,4 +33,4 @@ app:
     forexfactory:
       url: https://nfs.faireconomy.media/ff_calendar_thisweek.json
     fred:
-      api-key: ""
+      api-key: ${FRED_API_KEY:}
