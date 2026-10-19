@@ -1,0 +1,20 @@
+[
+  { "indicadorId": "nonfarm_payrolls", "serieId": "PAYEMS", "transformacion": "CAMBIO", "escala": 1000 },
+  { "indicadorId": "tasa_desempleo", "serieId": "UNRATE", "transformacion": "DIRECTA", "escala": 1 },
+  { "indicadorId": "salarios_hora", "serieId": "CES0500000003", "transformacion": "PCT_CAMBIO", "escala": 1 },
+  { "indicadorId": "cpi", "serieId": "CPIAUCSL", "transformacion": "PCT_CAMBIO", "escala": 1 },
+  { "indicadorId": "core_cpi", "serieId": "CPILFESL", "transformacion": "PCT_CAMBIO", "escala": 1 },
+  { "indicadorId": "pce", "serieId": "PCEPI", "transformacion": "PCT_CAMBIO", "escala": 1 },
+  { "indicadorId": "core_pce", "serieId": "PCEPILFE", "transformacion": "PCT_CAMBIO", "escala": 1 },
+  { "indicadorId": "pib", "serieId": "GDP", "transformacion": "PCT_CAMBIO", "escala": 1 },
+  { "indicadorId": "ism_manufacturero", "serieId": "NAPM", "transformacion": "DIRECTA", "escala": 1 },
+  { "indicadorId": "ventas_minoristas", "serieId": "RSAFS", "transformacion": "PCT_CAMBIO", "escala": 1 },
+  { "indicadorId": "jobless_claims", "serieId": "ICSA", "transformacion": "DIRECTA", "escala": 1 },
+  { "indicadorId": "jolts", "serieId": "JTSJOL", "transformacion": "DIRECTA", "escala": 1 },
+  { "indicadorId": "ppi", "serieId": "PPIACO", "transformacion": "PCT_CAMBIO", "escala": 1 },
+  { "indicadorId": "bienes_duraderos", "serieId": "DGORDER", "transformacion": "PCT_CAMBIO", "escala": 1 },
+  { "indicadorId": "balanza_comercial", "serieId": "BOPGSTB", "transformacion": "DIRECTA", "escala": 1 },
+  { "indicadorId": "umich", "serieId": "UMCSENT", "transformacion": "DIRECTA", "escala": 1 },
+  { "indicadorId": "produccion_industrial", "serieId": "INDPRO", "transformacion": "PCT_CAMBIO", "escala": 1 },
+  { "indicadorId": "ventas_viviendas", "serieId": "HSN1F", "transformacion": "DIRECTA", "escala": 1 }
+]

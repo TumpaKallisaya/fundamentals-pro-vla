@@ -2,7 +2,7 @@
   {
     "id": "fomc_tasas",
     "nombre": "FOMC — Decisión de tipos de interés (Federal Funds Rate)",
-    "alias_ff": "Federal Funds Rate",
+    "alias_ff": "FOMC Statement",
     "sector": "indices",
     "impacto": "Alto",
     "frecuencia": "8 veces al año (~cada 6 semanas)",
@@ -162,7 +162,7 @@
   {
     "id": "pib",
     "nombre": "PIB (GDP, avance trimestral anualizado)",
-    "alias_ff": "Advance GDP q/q",
+    "alias_ff": "Prelim GDP q/q",
     "sector": "indices",
     "impacto": "Alto",
     "frecuencia": "Trimestral (avance/preliminar/final)",
@@ -382,7 +382,7 @@
   {
     "id": "umich",
     "nombre": "Sentimiento del consumidor (UMich)",
-    "alias_ff": "UoM Consumer Sentiment",
+    "alias_ff": "Prelim UoM Consumer Sentiment",
     "sector": "indices",
     "impacto": "Medio",
     "frecuencia": "Mensual (preliminar y final)",

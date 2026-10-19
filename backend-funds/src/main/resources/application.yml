@@ -32,3 +32,5 @@ app:
   fuentes:
     forexfactory:
       url: https://nfs.faireconomy.media/ff_calendar_thisweek.json
+    fred:
+      api-key: ""

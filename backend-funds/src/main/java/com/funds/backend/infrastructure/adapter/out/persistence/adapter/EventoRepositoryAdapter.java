@@ -1,6 +1,7 @@
 package com.funds.backend.infrastructure.adapter.out.persistence.adapter;
 
 import java.time.Instant;
+import java.util.List;
 import java.util.Optional;
 
 import com.funds.backend.domain.model.Evento;
@@ -28,5 +29,12 @@ public class EventoRepositoryAdapter implements EventoRepository {
     public Optional<Evento> findByIndicadorIdAndFechaHoraUtc(String indicadorId, Instant fechaHoraUtc) {
         return jpaRepository.findByIndicadorIdAndFechaHoraUtc(indicadorId, fechaHoraUtc)
                 .map(EventoMapper::toDomain);
+    }
+
+    @Override
+    public List<Evento> findByFechaHoraUtcBetween(Instant desde, Instant hasta) {
+        return jpaRepository.findByFechaHoraUtcBetween(desde, hasta).stream()
+                .map(EventoMapper::toDomain)
+                .toList();
     }
 }
