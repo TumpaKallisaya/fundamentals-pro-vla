@@ -50,3 +50,19 @@ para el frontend utiliza la arquitectura orientada a funcionalidades (Feature-Ba
 establece este estandar en el tech-stack.md como obligatoria para cualquier agente que realice desarollos o mantenimientos al sistema y corrige los archivos .md utilizados en la fase 0 para que haya coherencia entre estos ultimos requerimientos y dichos archivos
 establece en el backend y frontend las arquitecturas solicitadas
 
+## Prompt 7
+
+Busca la siguiente fase en specs/roadmap.md. Pregúntame sobre la especificación de la funcionalidad.
+Revisa el archivo fuentes_trading_scraping_api.md para el listado de indicadores de alto y medio impacto
+
+Crea:
+ - una nueva carpeta YYYY-MM-DD-funcionalidad-nombre debajo de specs para el trabajo de esta funcionalidad
+ 
+ - Ahí:
+  - plan.md como una serie de grupos de tareas numerados.
+  - requirements.md para el alcance, las decisiones y el contexto.
+  - validation.md para determinar si la implementación fue exitosa y puede integrarse al código principal.
+
+Guiate utilizando specs/mission.md y specs/tech-stack.md.
+
+Si requieres hacer preguntas para aclarar aspectos lógicos o técnicos pregunta antes de escribir a disco.
