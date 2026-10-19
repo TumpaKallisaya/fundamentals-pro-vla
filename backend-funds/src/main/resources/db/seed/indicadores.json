@@ -1,0 +1,462 @@
+[
+  {
+    "id": "fomc_tasas",
+    "nombre": "FOMC — Decisión de tipos de interés (Federal Funds Rate)",
+    "alias_ff": "Federal Funds Rate",
+    "sector": "indices",
+    "impacto": "Alto",
+    "frecuencia": "8 veces al año (~cada 6 semanas)",
+    "hora_et": "14:00",
+    "indices": [
+      { "indice": "NAS100", "relevancia": "alta" },
+      { "indice": "SP500", "relevancia": "alta" }
+    ],
+    "fuente": {
+      "nombre": "Forex Factory",
+      "tipo": "api",
+      "url": "https://nfs.faireconomy.media/ff_calendar_thisweek.json",
+      "notas": "Feed JSON público: incluye forecast/previous; NO incluye actual."
+    },
+    "regla": { "direccion": "mayor_es_bajista", "peso": 3, "tolerancia_pct": 5 }
+  },
+  {
+    "id": "nonfarm_payrolls",
+    "nombre": "Non-Farm Payrolls (NFP)",
+    "alias_ff": "Non-Farm Employment Change",
+    "sector": "indices",
+    "impacto": "Alto",
+    "frecuencia": "Mensual (primer viernes)",
+    "hora_et": "08:30",
+    "indices": [
+      { "indice": "NAS100", "relevancia": "alta" },
+      { "indice": "SP500", "relevancia": "alta" }
+    ],
+    "fuente": {
+      "nombre": "Forex Factory",
+      "tipo": "api",
+      "url": "https://nfs.faireconomy.media/ff_calendar_thisweek.json",
+      "notas": "Feed JSON público: incluye forecast/previous; NO incluye actual."
+    },
+    "regla": { "direccion": "mayor_es_alcista", "peso": 3, "tolerancia_pct": 20 }
+  },
+  {
+    "id": "tasa_desempleo",
+    "nombre": "Tasa de desempleo (Unemployment Rate)",
+    "alias_ff": "Unemployment Rate",
+    "sector": "indices",
+    "impacto": "Alto",
+    "frecuencia": "Mensual (primer viernes)",
+    "hora_et": "08:30",
+    "indices": [
+      { "indice": "NAS100", "relevancia": "media" },
+      { "indice": "SP500", "relevancia": "media" }
+    ],
+    "fuente": {
+      "nombre": "Forex Factory",
+      "tipo": "api",
+      "url": "https://nfs.faireconomy.media/ff_calendar_thisweek.json",
+      "notas": "Feed JSON público: incluye forecast/previous; NO incluye actual."
+    },
+    "regla": { "direccion": "mayor_es_bajista", "peso": 3, "tolerancia_pct": 5 }
+  },
+  {
+    "id": "salarios_hora",
+    "nombre": "Salarios medios por hora (Average Hourly Earnings m/m)",
+    "alias_ff": "Average Hourly Earnings m/m",
+    "sector": "indices",
+    "impacto": "Alto",
+    "frecuencia": "Mensual (primer viernes)",
+    "hora_et": "08:30",
+    "indices": [
+      { "indice": "NAS100", "relevancia": "alta" },
+      { "indice": "SP500", "relevancia": "alta" }
+    ],
+    "fuente": {
+      "nombre": "Forex Factory",
+      "tipo": "api",
+      "url": "https://nfs.faireconomy.media/ff_calendar_thisweek.json",
+      "notas": "Feed JSON público: incluye forecast/previous; NO incluye actual."
+    },
+    "regla": { "direccion": "mayor_es_bajista", "peso": 3, "tolerancia_pct": 20 }
+  },
+  {
+    "id": "cpi",
+    "nombre": "CPI (Consumer Price Index m/m)",
+    "alias_ff": "CPI m/m",
+    "sector": "indices",
+    "impacto": "Alto",
+    "frecuencia": "Mensual",
+    "hora_et": "08:30",
+    "indices": [
+      { "indice": "NAS100", "relevancia": "alta" },
+      { "indice": "SP500", "relevancia": "alta" }
+    ],
+    "fuente": {
+      "nombre": "Forex Factory",
+      "tipo": "api",
+      "url": "https://nfs.faireconomy.media/ff_calendar_thisweek.json",
+      "notas": "Feed JSON público: incluye forecast/previous; NO incluye actual."
+    },
+    "regla": { "direccion": "mayor_es_bajista", "peso": 3, "tolerancia_pct": 15 }
+  },
+  {
+    "id": "core_cpi",
+    "nombre": "Core CPI (m/m)",
+    "alias_ff": "Core CPI m/m",
+    "sector": "indices",
+    "impacto": "Alto",
+    "frecuencia": "Mensual",
+    "hora_et": "08:30",
+    "indices": [
+      { "indice": "NAS100", "relevancia": "alta" },
+      { "indice": "SP500", "relevancia": "alta" }
+    ],
+    "fuente": {
+      "nombre": "Forex Factory",
+      "tipo": "api",
+      "url": "https://nfs.faireconomy.media/ff_calendar_thisweek.json",
+      "notas": "Feed JSON público: incluye forecast/previous; NO incluye actual."
+    },
+    "regla": { "direccion": "mayor_es_bajista", "peso": 3, "tolerancia_pct": 15 }
+  },
+  {
+    "id": "pce",
+    "nombre": "PCE (Personal Consumption Expenditures m/m)",
+    "alias_ff": "PCE Price Index m/m",
+    "sector": "indices",
+    "impacto": "Alto",
+    "frecuencia": "Mensual",
+    "hora_et": "08:30",
+    "indices": [
+      { "indice": "NAS100", "relevancia": "alta" },
+      { "indice": "SP500", "relevancia": "alta" }
+    ],
+    "fuente": {
+      "nombre": "Forex Factory",
+      "tipo": "api",
+      "url": "https://nfs.faireconomy.media/ff_calendar_thisweek.json",
+      "notas": "Feed JSON público: incluye forecast/previous; NO incluye actual."
+    },
+    "regla": { "direccion": "mayor_es_bajista", "peso": 3, "tolerancia_pct": 15 }
+  },
+  {
+    "id": "core_pce",
+    "nombre": "Core PCE (m/m)",
+    "alias_ff": "Core PCE Price Index m/m",
+    "sector": "indices",
+    "impacto": "Alto",
+    "frecuencia": "Mensual",
+    "hora_et": "08:30",
+    "indices": [
+      { "indice": "NAS100", "relevancia": "alta" },
+      { "indice": "SP500", "relevancia": "alta" }
+    ],
+    "fuente": {
+      "nombre": "Forex Factory",
+      "tipo": "api",
+      "url": "https://nfs.faireconomy.media/ff_calendar_thisweek.json",
+      "notas": "Feed JSON público: incluye forecast/previous; NO incluye actual."
+    },
+    "regla": { "direccion": "mayor_es_bajista", "peso": 3, "tolerancia_pct": 15 }
+  },
+  {
+    "id": "pib",
+    "nombre": "PIB (GDP, avance trimestral anualizado)",
+    "alias_ff": "Advance GDP q/q",
+    "sector": "indices",
+    "impacto": "Alto",
+    "frecuencia": "Trimestral (avance/preliminar/final)",
+    "hora_et": "08:30",
+    "indices": [
+      { "indice": "NAS100", "relevancia": "media" },
+      { "indice": "SP500", "relevancia": "media" }
+    ],
+    "fuente": {
+      "nombre": "Forex Factory",
+      "tipo": "api",
+      "url": "https://nfs.faireconomy.media/ff_calendar_thisweek.json",
+      "notas": "Feed JSON público: incluye forecast/previous; NO incluye actual."
+    },
+    "regla": { "direccion": "mayor_es_alcista", "peso": 3, "tolerancia_pct": 15 }
+  },
+  {
+    "id": "ism_manufacturero",
+    "nombre": "ISM Manufacturero (PMI)",
+    "alias_ff": "ISM Manufacturing PMI",
+    "sector": "indices",
+    "impacto": "Alto",
+    "frecuencia": "Mensual (primer día hábil)",
+    "hora_et": "10:00",
+    "indices": [
+      { "indice": "NAS100", "relevancia": "media" },
+      { "indice": "SP500", "relevancia": "media" }
+    ],
+    "fuente": {
+      "nombre": "Forex Factory",
+      "tipo": "api",
+      "url": "https://nfs.faireconomy.media/ff_calendar_thisweek.json",
+      "notas": "Feed JSON público: incluye forecast/previous; NO incluye actual."
+    },
+    "regla": { "direccion": "mayor_es_alcista", "peso": 3, "tolerancia_pct": 5 }
+  },
+  {
+    "id": "ism_servicios",
+    "nombre": "ISM de Servicios (PMI)",
+    "alias_ff": "ISM Services PMI",
+    "sector": "indices",
+    "impacto": "Alto",
+    "frecuencia": "Mensual",
+    "hora_et": "10:00",
+    "indices": [
+      { "indice": "NAS100", "relevancia": "media" },
+      { "indice": "SP500", "relevancia": "media" }
+    ],
+    "fuente": {
+      "nombre": "Forex Factory",
+      "tipo": "api",
+      "url": "https://nfs.faireconomy.media/ff_calendar_thisweek.json",
+      "notas": "Feed JSON público: incluye forecast/previous; NO incluye actual."
+    },
+    "regla": { "direccion": "mayor_es_alcista", "peso": 3, "tolerancia_pct": 5 }
+  },
+  {
+    "id": "ventas_minoristas",
+    "nombre": "Ventas minoristas (Retail Sales m/m)",
+    "alias_ff": "Retail Sales m/m",
+    "sector": "indices",
+    "impacto": "Alto",
+    "frecuencia": "Mensual",
+    "hora_et": "08:30",
+    "indices": [
+      { "indice": "NAS100", "relevancia": "media" },
+      { "indice": "SP500", "relevancia": "alta" }
+    ],
+    "fuente": {
+      "nombre": "Forex Factory",
+      "tipo": "api",
+      "url": "https://nfs.faireconomy.media/ff_calendar_thisweek.json",
+      "notas": "Feed JSON público: incluye forecast/previous; NO incluye actual."
+    },
+    "regla": { "direccion": "mayor_es_alcista", "peso": 3, "tolerancia_pct": 20 }
+  },
+  {
+    "id": "jobless_claims",
+    "nombre": "Jobless Claims (solicitudes iniciales)",
+    "alias_ff": "Unemployment Claims",
+    "sector": "indices",
+    "impacto": "Medio",
+    "frecuencia": "Semanal (jueves)",
+    "hora_et": "08:30",
+    "indices": [
+      { "indice": "NAS100", "relevancia": "media" },
+      { "indice": "SP500", "relevancia": "media" }
+    ],
+    "fuente": {
+      "nombre": "Forex Factory",
+      "tipo": "api",
+      "url": "https://nfs.faireconomy.media/ff_calendar_thisweek.json",
+      "notas": "Feed JSON público: incluye forecast/previous; NO incluye actual."
+    },
+    "regla": { "direccion": "mayor_es_bajista", "peso": 1, "tolerancia_pct": 10 }
+  },
+  {
+    "id": "adp",
+    "nombre": "ADP — Cambio de empleo no agrícola",
+    "alias_ff": "ADP Non-Farm Employment Change",
+    "sector": "indices",
+    "impacto": "Medio",
+    "frecuencia": "Mensual",
+    "hora_et": "08:15",
+    "indices": [
+      { "indice": "NAS100", "relevancia": "media" },
+      { "indice": "SP500", "relevancia": "media" }
+    ],
+    "fuente": {
+      "nombre": "Forex Factory",
+      "tipo": "api",
+      "url": "https://nfs.faireconomy.media/ff_calendar_thisweek.json",
+      "notas": "Feed JSON público: incluye forecast/previous; NO incluye actual."
+    },
+    "regla": { "direccion": "mayor_es_alcista", "peso": 1, "tolerancia_pct": 20 }
+  },
+  {
+    "id": "jolts",
+    "nombre": "JOLTS — Aperturas de empleo",
+    "alias_ff": "JOLTS Job Openings",
+    "sector": "indices",
+    "impacto": "Medio",
+    "frecuencia": "Mensual",
+    "hora_et": "10:00",
+    "indices": [
+      { "indice": "NAS100", "relevancia": "media" },
+      { "indice": "SP500", "relevancia": "media" }
+    ],
+    "fuente": {
+      "nombre": "Forex Factory",
+      "tipo": "api",
+      "url": "https://nfs.faireconomy.media/ff_calendar_thisweek.json",
+      "notas": "Feed JSON público: incluye forecast/previous; NO incluye actual."
+    },
+    "regla": { "direccion": "mayor_es_alcista", "peso": 1, "tolerancia_pct": 15 }
+  },
+  {
+    "id": "ppi",
+    "nombre": "PPI (Producer Price Index m/m)",
+    "alias_ff": "PPI m/m",
+    "sector": "indices",
+    "impacto": "Medio",
+    "frecuencia": "Mensual",
+    "hora_et": "08:30",
+    "indices": [
+      { "indice": "NAS100", "relevancia": "media" },
+      { "indice": "SP500", "relevancia": "media" }
+    ],
+    "fuente": {
+      "nombre": "Forex Factory",
+      "tipo": "api",
+      "url": "https://nfs.faireconomy.media/ff_calendar_thisweek.json",
+      "notas": "Feed JSON público: incluye forecast/previous; NO incluye actual."
+    },
+    "regla": { "direccion": "mayor_es_bajista", "peso": 1, "tolerancia_pct": 20 }
+  },
+  {
+    "id": "bienes_duraderos",
+    "nombre": "Bienes duraderos (Durable Goods Orders m/m)",
+    "alias_ff": "Durable Goods Orders m/m",
+    "sector": "indices",
+    "impacto": "Medio",
+    "frecuencia": "Mensual",
+    "hora_et": "08:30",
+    "indices": [
+      { "indice": "NAS100", "relevancia": "media" },
+      { "indice": "SP500", "relevancia": "media" }
+    ],
+    "fuente": {
+      "nombre": "Forex Factory",
+      "tipo": "api",
+      "url": "https://nfs.faireconomy.media/ff_calendar_thisweek.json",
+      "notas": "Feed JSON público: incluye forecast/previous; NO incluye actual."
+    },
+    "regla": { "direccion": "mayor_es_alcista", "peso": 1, "tolerancia_pct": 20 }
+  },
+  {
+    "id": "inventarios_mayoristas",
+    "nombre": "Inventarios mayoristas (Wholesale Inventories m/m)",
+    "alias_ff": "Wholesale Inventories m/m",
+    "sector": "indices",
+    "impacto": "Medio",
+    "frecuencia": "Mensual",
+    "hora_et": "10:00",
+    "indices": [
+      { "indice": "NAS100", "relevancia": "baja" },
+      { "indice": "SP500", "relevancia": "baja" }
+    ],
+    "fuente": {
+      "nombre": "Forex Factory",
+      "tipo": "api",
+      "url": "https://nfs.faireconomy.media/ff_calendar_thisweek.json",
+      "notas": "Feed JSON público: incluye forecast/previous; NO incluye actual."
+    },
+    "regla": { "direccion": "mayor_es_alcista", "peso": 1, "tolerancia_pct": 20 }
+  },
+  {
+    "id": "balanza_comercial",
+    "nombre": "Balanza comercial (Trade Balance)",
+    "alias_ff": "Trade Balance",
+    "sector": "indices",
+    "impacto": "Medio",
+    "frecuencia": "Mensual",
+    "hora_et": "08:30",
+    "indices": [
+      { "indice": "NAS100", "relevancia": "baja" },
+      { "indice": "SP500", "relevancia": "baja" }
+    ],
+    "fuente": {
+      "nombre": "Forex Factory",
+      "tipo": "api",
+      "url": "https://nfs.faireconomy.media/ff_calendar_thisweek.json",
+      "notas": "Feed JSON público: incluye forecast/previous; NO incluye actual."
+    },
+    "regla": { "direccion": "mayor_es_alcista", "peso": 1, "tolerancia_pct": 20 }
+  },
+  {
+    "id": "umich",
+    "nombre": "Sentimiento del consumidor (UMich)",
+    "alias_ff": "UoM Consumer Sentiment",
+    "sector": "indices",
+    "impacto": "Medio",
+    "frecuencia": "Mensual (preliminar y final)",
+    "hora_et": "10:00",
+    "indices": [
+      { "indice": "NAS100", "relevancia": "media" },
+      { "indice": "SP500", "relevancia": "media" }
+    ],
+    "fuente": {
+      "nombre": "Forex Factory",
+      "tipo": "api",
+      "url": "https://nfs.faireconomy.media/ff_calendar_thisweek.json",
+      "notas": "Feed JSON público: incluye forecast/previous; NO incluye actual."
+    },
+    "regla": { "direccion": "mayor_es_alcista", "peso": 1, "tolerancia_pct": 5 }
+  },
+  {
+    "id": "confianza_consumidor",
+    "nombre": "Confianza del consumidor (Conference Board)",
+    "alias_ff": "CB Consumer Confidence",
+    "sector": "indices",
+    "impacto": "Medio",
+    "frecuencia": "Mensual",
+    "hora_et": "10:00",
+    "indices": [
+      { "indice": "NAS100", "relevancia": "media" },
+      { "indice": "SP500", "relevancia": "alta" }
+    ],
+    "fuente": {
+      "nombre": "Forex Factory",
+      "tipo": "api",
+      "url": "https://nfs.faireconomy.media/ff_calendar_thisweek.json",
+      "notas": "Feed JSON público: incluye forecast/previous; NO incluye actual."
+    },
+    "regla": { "direccion": "mayor_es_alcista", "peso": 1, "tolerancia_pct": 5 }
+  },
+  {
+    "id": "produccion_industrial",
+    "nombre": "Producción industrial (Industrial Production m/m)",
+    "alias_ff": "Industrial Production m/m",
+    "sector": "indices",
+    "impacto": "Medio",
+    "frecuencia": "Mensual",
+    "hora_et": "09:15",
+    "indices": [
+      { "indice": "NAS100", "relevancia": "baja" },
+      { "indice": "SP500", "relevancia": "media" }
+    ],
+    "fuente": {
+      "nombre": "Forex Factory",
+      "tipo": "api",
+      "url": "https://nfs.faireconomy.media/ff_calendar_thisweek.json",
+      "notas": "Feed JSON público: incluye forecast/previous; NO incluye actual."
+    },
+    "regla": { "direccion": "mayor_es_alcista", "peso": 1, "tolerancia_pct": 20 }
+  },
+  {
+    "id": "ventas_viviendas",
+    "nombre": "Ventas de viviendas nuevas (New Home Sales)",
+    "alias_ff": "New Home Sales",
+    "sector": "indices",
+    "impacto": "Medio",
+    "frecuencia": "Mensual",
+    "hora_et": "10:00",
+    "indices": [
+      { "indice": "NAS100", "relevancia": "baja" },
+      { "indice": "SP500", "relevancia": "media" }
+    ],
+    "fuente": {
+      "nombre": "Forex Factory",
+      "tipo": "api",
+      "url": "https://nfs.faireconomy.media/ff_calendar_thisweek.json",
+      "notas": "Feed JSON público: incluye forecast/previous; NO incluye actual."
+    },
+    "regla": { "direccion": "mayor_es_alcista", "peso": 1, "tolerancia_pct": 15 }
+  }
+]
