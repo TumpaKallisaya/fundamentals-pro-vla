@@ -66,3 +66,35 @@ Crea:
 Guiate utilizando specs/mission.md y specs/tech-stack.md.
 
 Si requieres hacer preguntas para aclarar aspectos lógicos o técnicos pregunta antes de escribir a disco.
+
+## Prompt 8, 9 
+
+Busca la siguiente fase en specs/roadmap.md. Pregúntame sobre la especificación de la funcionalidad.
+Crea:
+ - una nueva carpeta YYYY-MM-DD-funcionalidad-nombre debajo de specs para el trabajo de esta funcionalidad
+ 
+ - Ahí:
+  - plan.md como una serie de grupos de tareas numerados.
+  - requirements.md para el alcance, las decisiones y el contexto.
+  - validation.md para determinar si la implementación fue exitosa y puede integrarse al código principal.
+
+Guiate utilizando specs/mission.md y specs/tech-stack.md.
+
+Si requieres hacer preguntas para aclarar aspectos lógicos o técnicos pregunta antes de escribir a disco.
+
+## Prompt 10
+
+revisa el documento D:\reglasFundamentales.pdf e identifica las reglas para los indicadores, revisa la web en fuentes de mayor confianza por si requieres reglas en otros indicadores que no se mencionan en el pdf, revisa que las fuentes de internet sean las mejor valoradas por traders profesionales 
+Busca la siguiente fase en specs/roadmap.md. Pregúntame sobre la especificación de la funcionalidad.
+Crea:
+ - una nueva carpeta YYYY-MM-DD-funcionalidad-nombre debajo de specs para el trabajo de esta funcionalidad
+ 
+ - Ahí:
+  - plan.md como una serie de grupos de tareas numerados.
+  - requirements.md para el alcance, las decisiones y el contexto.
+  - validation.md para determinar si la implementación fue exitosa y puede integrarse al código principal.
+
+Guiate utilizando specs/mission.md y specs/tech-stack.md.
+
+Si requieres hacer preguntas para aclarar aspectos lógicos o técnicos pregunta antes de escribir a disco.
+
