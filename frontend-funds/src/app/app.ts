@@ -1,27 +1,13 @@
-import { Component, OnInit, signal } from '@angular/core';
-import { HealthService } from './features/health/health.service';
+import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 
-type ConnectionState = 'loading' | 'connected' | 'error';
-
+/**
+ * Componente raíz (shell): renderiza el layout global y el router-outlet.
+ */
 @Component({
   selector: 'app-root',
-  styleUrl: './app.scss',
+  imports: [RouterOutlet],
   templateUrl: './app.html',
+  styleUrl: './app.scss',
 })
-export class App implements OnInit {
-  protected readonly title = 'IndicadoresFundamentales';
-  protected readonly state = signal<ConnectionState>('loading');
-  protected readonly serviceName = signal('');
-
-  constructor(private readonly health: HealthService) {}
-
-  ngOnInit(): void {
-    this.health.check().subscribe({
-      next: (res) => {
-        this.serviceName.set(res.service);
-        this.state.set('connected');
-      },
-      error: () => this.state.set('error'),
-    });
-  }
-}
+export class App {}

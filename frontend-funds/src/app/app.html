@@ -1,15 +1,1 @@
-<main class="home">
-  <h1>{{ title }}</h1>
-
-  @switch (state()) {
-    @case ('loading') {
-      <p class="status status--loading">Consultando estado del backend…</p>
-    }
-    @case ('connected') {
-      <p class="status status--connected">Conectado al backend ({{ serviceName() }})</p>
-    }
-    @case ('error') {
-      <p class="status status--error">No se pudo conectar al backend</p>
-    }
-  }
-</main>
+<router-outlet />

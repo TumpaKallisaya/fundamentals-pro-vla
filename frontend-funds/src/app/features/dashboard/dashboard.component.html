@@ -1,0 +1,91 @@
+<mat-card class="tarjeta">
+  <mat-card-header>
+    <mat-card-title>Indicadores Fundamentales</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+    <div class="filtros">
+      <label class="campo">
+        Desde
+        <input type="date" [value]="desde()" (change)="cambiarDesde($any($event.target).value)" />
+      </label>
+      <label class="campo">
+        Hasta
+        <input type="date" [value]="hasta()" (change)="cambiarHasta($any($event.target).value)" />
+      </label>
+
+      <mat-form-field appearance="outline" class="indice">
+        <mat-label>Índice</mat-label>
+        <mat-select [value]="indice()" (selectionChange)="cambiarIndice($event.value)">
+          <mat-option value="NAS100">NASDAQ 100</mat-option>
+          <mat-option value="SP500">S&amp;P 500</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" (click)="actualizar()">Actualizar</button>
+    </div>
+
+    @if (cargando()) {
+      <mat-spinner diameter="24"></mat-spinner>
+    }
+    @if (error()) {
+      <p class="error">{{ error() }}</p>
+    }
+    @if (ultimoRefresco()) {
+      <p class="refresco">
+        Último refresco: <strong>{{ ultimoRefresco()!.estado }}</strong>
+        @if (ultimoRefresco()!.detalle) {
+          · {{ ultimoRefresco()!.detalle }}
+        }
+      </p>
+    }
+
+    <h2>Sección 1 — Resultados por indicador</h2>
+    <div class="scroll">
+      <table class="tabla">
+        <thead>
+          <tr>
+            <th>Indicador</th>
+            @for (fecha of fechas(); track fecha) {
+              <th>{{ fecha.slice(5) }}</th>
+            }
+          </tr>
+        </thead>
+        <tbody>
+          @for (fila of semaforoFilas(); track fila.nombre) {
+            <tr>
+              <td class="nombre">{{ fila.nombre }}</td>
+              @for (celda of fila.celdas; track $index) {
+                <td [class]="claseEstado(celda)"></td>
+              }
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Sección 2 — Tendencia proyectada del día por índice</h2>
+    <div class="scroll">
+      <table class="tabla">
+        <thead>
+          <tr>
+            <th>Índice</th>
+            @for (fecha of fechas(); track fecha) {
+              <th>{{ fecha.slice(5) }}</th>
+            }
+          </tr>
+        </thead>
+        <tbody>
+          @for (fila of tendenciaFilas(); track fila.indice) {
+            <tr>
+              <td class="nombre">{{ fila.indice }}</td>
+              @for (celda of fila.celdas; track $index) {
+                <td [class]="claseTendencia(celda)">{{ simboloTendencia(celda) }}</td>
+              }
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </mat-card-content>
+</mat-card>
