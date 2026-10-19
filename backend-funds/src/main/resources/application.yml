@@ -27,3 +27,8 @@ management:
 
 server:
   port: 8080
+
+app:
+  fuentes:
+    forexfactory:
+      url: https://nfs.faireconomy.media/ff_calendar_thisweek.json

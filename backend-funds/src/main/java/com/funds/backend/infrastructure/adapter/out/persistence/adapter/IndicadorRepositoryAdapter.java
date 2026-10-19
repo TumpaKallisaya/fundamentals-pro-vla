@@ -25,6 +25,11 @@ public class IndicadorRepositoryAdapter implements IndicadorRepository {
     }
 
     @Override
+    public Optional<Indicador> findByAliasFf(String aliasFf) {
+        return jpaRepository.findByAliasFf(aliasFf).map(IndicadorMapper::toDomain);
+    }
+
+    @Override
     public Indicador save(Indicador indicador) {
         return IndicadorMapper.toDomain(jpaRepository.save(IndicadorMapper.toEntity(indicador)));
     }

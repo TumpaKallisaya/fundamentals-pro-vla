@@ -10,6 +10,8 @@ public interface IndicadorRepository {
 
     Optional<Indicador> findById(String id);
 
+    Optional<Indicador> findByAliasFf(String aliasFf);
+
     Indicador save(Indicador indicador);
 
     boolean existsById(String id);
