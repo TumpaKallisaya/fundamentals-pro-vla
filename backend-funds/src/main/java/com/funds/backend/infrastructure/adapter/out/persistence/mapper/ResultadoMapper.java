@@ -14,7 +14,9 @@ public final class ResultadoMapper {
                 entity.getId(),
                 entity.getEventoId(),
                 entity.getRefrescoId(),
-                entity.getActual()
+                entity.getActual(),
+                entity.getEstado(),
+                entity.getDesviacion()
         );
     }
 
@@ -23,7 +25,9 @@ public final class ResultadoMapper {
                 domain.id(),
                 domain.eventoId(),
                 domain.refrescoId(),
-                domain.actual()
+                domain.actual(),
+                domain.estado(),
+                domain.desviacion()
         );
     }
 }

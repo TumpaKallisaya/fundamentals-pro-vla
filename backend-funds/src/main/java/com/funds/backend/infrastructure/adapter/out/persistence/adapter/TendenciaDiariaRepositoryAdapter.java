@@ -1,6 +1,7 @@
 package com.funds.backend.infrastructure.adapter.out.persistence.adapter;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 import com.funds.backend.domain.model.TendenciaDiaria;
@@ -28,5 +29,12 @@ public class TendenciaDiariaRepositoryAdapter implements TendenciaDiariaReposito
     public Optional<TendenciaDiaria> findByIndiceCodigoAndFecha(String indiceCodigo, LocalDate fecha) {
         return jpaRepository.findByIndiceCodigoAndFecha(indiceCodigo, fecha)
                 .map(TendenciaDiariaMapper::toDomain);
+    }
+
+    @Override
+    public List<TendenciaDiaria> findByFechaBetween(LocalDate desde, LocalDate hasta) {
+        return jpaRepository.findByFechaBetween(desde, hasta).stream()
+                .map(TendenciaDiariaMapper::toDomain)
+                .toList();
     }
 }

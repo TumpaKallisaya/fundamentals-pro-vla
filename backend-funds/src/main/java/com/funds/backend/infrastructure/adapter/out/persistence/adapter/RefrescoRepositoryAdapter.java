@@ -27,4 +27,9 @@ public class RefrescoRepositoryAdapter implements RefrescoRepository {
     public Optional<Refresco> findById(Long id) {
         return jpaRepository.findById(id).map(RefrescoMapper::toDomain);
     }
+
+    @Override
+    public Optional<Refresco> findLatest() {
+        return jpaRepository.findTopByOrderByIdDesc().map(RefrescoMapper::toDomain);
+    }
 }

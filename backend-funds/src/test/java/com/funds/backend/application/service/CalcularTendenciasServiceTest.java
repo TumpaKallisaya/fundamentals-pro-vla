@@ -23,11 +23,11 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.funds.backend.domain.model.ClasificacionTendencia;
 import com.funds.backend.domain.model.Direccion;
+import com.funds.backend.domain.model.EstadoEvento;
 import com.funds.backend.domain.model.Evento;
 import com.funds.backend.domain.model.Impacto;
 import com.funds.backend.domain.model.Indicador;
 import com.funds.backend.domain.model.IndicadorIndice;
-import com.funds.backend.domain.model.Refresco;
 import com.funds.backend.domain.model.Regla;
 import com.funds.backend.domain.model.Relevancia;
 import com.funds.backend.domain.model.Resultado;
@@ -35,7 +35,6 @@ import com.funds.backend.domain.model.TendenciaDiaria;
 import com.funds.backend.domain.port.out.EventoRepository;
 import com.funds.backend.domain.port.out.IndicadorIndiceRepository;
 import com.funds.backend.domain.port.out.IndicadorRepository;
-import com.funds.backend.domain.port.out.RefrescoRepository;
 import com.funds.backend.domain.port.out.ResultadoRepository;
 import com.funds.backend.domain.port.out.TendenciaDiariaRepository;
 import com.funds.backend.domain.port.out.ValorActualPort;
@@ -58,8 +57,6 @@ class CalcularTendenciasServiceTest {
     private ResultadoRepository resultadoRepository;
     @Mock
     private TendenciaDiariaRepository tendenciaDiariaRepository;
-    @Mock
-    private RefrescoRepository refrescoRepository;
 
     @InjectMocks
     private CalcularTendenciasService service;
@@ -85,22 +82,21 @@ class CalcularTendenciasServiceTest {
 
         when(tendenciaDiariaRepository.findByIndiceCodigoAndFecha(any(), eq(fecha))).thenReturn(Optional.empty());
 
-        when(refrescoRepository.save(any(Refresco.class))).thenAnswer(inv -> {
-            Refresco r = inv.getArgument(0);
-            return new Refresco(1L, r.iniciadoEnUtc(), r.finalizadoEnUtc(), r.estado(), r.detalle());
-        });
+        service.calcular(100L, fecha);
 
-        service.calcular(fecha);
-
-        verify(resultadoRepository).save(any(Resultado.class));
+        ArgumentCaptor<Resultado> resultadoCaptor = ArgumentCaptor.forClass(Resultado.class);
+        verify(resultadoRepository).save(resultadoCaptor.capture());
+        Resultado resultado = resultadoCaptor.getValue();
+        assertThat(resultado.refrescoId()).isEqualTo(100L);
+        assertThat(resultado.actual()).isEqualByComparingTo("0.3");
+        assertThat(resultado.estado()).isEqualTo(EstadoEvento.ROJO);
+        assertThat(resultado.desviacion()).isEqualByComparingTo("0.1");
 
         ArgumentCaptor<TendenciaDiaria> captor = ArgumentCaptor.forClass(TendenciaDiaria.class);
         verify(tendenciaDiariaRepository, times(2)).save(captor.capture());
         List<TendenciaDiaria> tendencias = captor.getAllValues();
-
         assertThat(tendencias).extracting(TendenciaDiaria::indiceCodigo)
                 .containsExactlyInAnyOrder("NAS100", "SP500");
-        // CPI actual 0.3 > forecast 0.2, dirección bajista → ROJO → -1 × peso 3 × relevancia 1 = -3 → BAJISTA
         assertThat(tendencias).allSatisfy(t -> {
             assertThat(t.puntaje()).isEqualByComparingTo("-3");
             assertThat(t.clasificacion()).isEqualTo(ClasificacionTendencia.BAJISTA);

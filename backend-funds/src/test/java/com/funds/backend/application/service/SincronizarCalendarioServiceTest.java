@@ -3,7 +3,6 @@ package com.funds.backend.application.service;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.never;
-import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -23,11 +22,9 @@ import com.funds.backend.domain.model.Evento;
 import com.funds.backend.domain.model.EventoCalendario;
 import com.funds.backend.domain.model.Impacto;
 import com.funds.backend.domain.model.Indicador;
-import com.funds.backend.domain.model.Refresco;
 import com.funds.backend.domain.port.out.CalendarioEconomicoPort;
 import com.funds.backend.domain.port.out.EventoRepository;
 import com.funds.backend.domain.port.out.IndicadorRepository;
-import com.funds.backend.domain.port.out.RefrescoRepository;
 
 /**
  * Prueba unitaria del caso de uso {@link SincronizarCalendarioService}.
@@ -41,8 +38,6 @@ class SincronizarCalendarioServiceTest {
     private IndicadorRepository indicadorRepository;
     @Mock
     private EventoRepository eventoRepository;
-    @Mock
-    private RefrescoRepository refrescoRepository;
 
     @InjectMocks
     private SincronizarCalendarioService service;
@@ -59,21 +54,13 @@ class SincronizarCalendarioServiceTest {
         when(indicadorRepository.findByAliasFf("CPI m/m")).thenReturn(Optional.of(indicador));
         when(eventoRepository.findByIndicadorIdAndFechaHoraUtc("cpi", fecha)).thenReturn(Optional.empty());
 
-        when(refrescoRepository.save(any(Refresco.class))).thenAnswer(inv -> {
-            Refresco r = inv.getArgument(0);
-            return new Refresco(1L, r.iniciadoEnUtc(), r.finalizadoEnUtc(), r.estado(), r.detalle());
-        });
+        int guardados = service.sincronizar();
 
-        service.sincronizar();
-
+        assertThat(guardados).isEqualTo(1);
         ArgumentCaptor<Evento> captor = ArgumentCaptor.forClass(Evento.class);
         verify(eventoRepository).save(captor.capture());
-        Evento evento = captor.getValue();
-        assertThat(evento.indicadorId()).isEqualTo("cpi");
-        assertThat(evento.fechaHoraUtc()).isEqualTo(fecha);
-        assertThat(evento.forecast()).isEqualByComparingTo(new BigDecimal("0.2"));
-
-        verify(refrescoRepository, times(2)).save(any(Refresco.class));
+        assertThat(captor.getValue().indicadorId()).isEqualTo("cpi");
+        assertThat(captor.getValue().forecast()).isEqualByComparingTo(new BigDecimal("0.2"));
     }
 
     @Test
@@ -84,14 +71,9 @@ class SincronizarCalendarioServiceTest {
         when(calendarioPort.obtenerEventos()).thenReturn(List.of(eventoCalendario));
         when(indicadorRepository.findByAliasFf("Algo Desconocido")).thenReturn(Optional.empty());
 
-        when(refrescoRepository.save(any(Refresco.class))).thenAnswer(inv -> {
-            Refresco r = inv.getArgument(0);
-            return new Refresco(1L, r.iniciadoEnUtc(), r.finalizadoEnUtc(), r.estado(), r.detalle());
-        });
+        int guardados = service.sincronizar();
 
-        service.sincronizar();
-
+        assertThat(guardados).isZero();
         verify(eventoRepository, never()).save(any(Evento.class));
-        verify(refrescoRepository, times(2)).save(any(Refresco.class));
     }
 }

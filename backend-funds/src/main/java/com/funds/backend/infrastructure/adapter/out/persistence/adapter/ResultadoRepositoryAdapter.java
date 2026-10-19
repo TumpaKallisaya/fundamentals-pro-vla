@@ -1,6 +1,7 @@
 package com.funds.backend.infrastructure.adapter.out.persistence.adapter;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.funds.backend.domain.model.Resultado;
 import com.funds.backend.domain.port.out.ResultadoRepository;
@@ -28,5 +29,11 @@ public class ResultadoRepositoryAdapter implements ResultadoRepository {
         return jpaRepository.findByEventoId(eventoId).stream()
                 .map(ResultadoMapper::toDomain)
                 .toList();
+    }
+
+    @Override
+    public Optional<Resultado> findLatestByEventoId(Long eventoId) {
+        return jpaRepository.findTopByEventoIdOrderByIdDesc(eventoId)
+                .map(ResultadoMapper::toDomain);
     }
 }

@@ -10,4 +10,6 @@ public interface RefrescoRepository {
     Refresco save(Refresco refresco);
 
     Optional<Refresco> findById(Long id);
+
+    Optional<Refresco> findLatest();
 }

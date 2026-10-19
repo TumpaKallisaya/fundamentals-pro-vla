@@ -1,6 +1,7 @@
 package com.funds.backend.infrastructure.adapter.out.persistence.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.funds.backend.infrastructure.adapter.out.persistence.entity.ResultadoEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -9,4 +10,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface JpaResultadoRepository extends JpaRepository<ResultadoEntity, Long> {
 
     List<ResultadoEntity> findByEventoId(Long eventoId);
+
+    Optional<ResultadoEntity> findTopByEventoIdOrderByIdDesc(Long eventoId);
 }
