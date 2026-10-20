@@ -1,30 +1,10 @@
 <mat-card class="tarjeta">
   <mat-card-header>
     <mat-card-title>Indicadores Fundamentales</mat-card-title>
+    <button mat-raised-button color="primary" (click)="actualizar()">Actualizar</button>
   </mat-card-header>
 
   <mat-card-content>
-    <div class="filtros">
-      <label class="campo">
-        Desde
-        <input type="date" [value]="desde()" (change)="cambiarDesde($any($event.target).value)" />
-      </label>
-      <label class="campo">
-        Hasta
-        <input type="date" [value]="hasta()" (change)="cambiarHasta($any($event.target).value)" />
-      </label>
-
-      <mat-form-field appearance="outline" class="indice">
-        <mat-label>Índice</mat-label>
-        <mat-select [value]="indice()" (selectionChange)="cambiarIndice($event.value)">
-          <mat-option value="NAS100">NASDAQ 100</mat-option>
-          <mat-option value="SP500">S&amp;P 500</mat-option>
-        </mat-select>
-      </mat-form-field>
-
-      <button mat-raised-button color="primary" (click)="actualizar()">Actualizar</button>
-    </div>
-
     @if (cargando()) {
       <mat-spinner diameter="24"></mat-spinner>
     }
@@ -40,23 +20,41 @@
       </p>
     }
 
-    <h2>Sección 1 — Resultados por indicador</h2>
+    <h2>Resultados por indicador</h2>
     <div class="scroll">
       <table class="tabla">
         <thead>
           <tr>
             <th>Indicador</th>
+            <th>Siguiente fecha</th>
             @for (fecha of fechas(); track fecha) {
-              <th>{{ fecha.slice(5) }}</th>
+              <th>{{ formatoDia(fecha) }}</th>
             }
           </tr>
         </thead>
         <tbody>
-          @for (fila of semaforoFilas(); track fila.nombre) {
+          <tr class="grupo">
+            <td [attr.colspan]="fechas().length + 2">Alto impacto</td>
+          </tr>
+          @for (ind of altoImpacto(); track ind.id) {
             <tr>
-              <td class="nombre">{{ fila.nombre }}</td>
-              @for (celda of fila.celdas; track $index) {
-                <td [class]="claseEstado(celda)"></td>
+              <td class="nombre">{{ ind.nombre }}</td>
+              <td class="siguiente">{{ formatearSiguiente(ind.siguienteFecha) }}</td>
+              @for (fecha of fechas(); track fecha) {
+                <td class="valor">{{ formatearValor(valorDe(ind.id, fecha)) }}</td>
+              }
+            </tr>
+          }
+
+          <tr class="grupo">
+            <td [attr.colspan]="fechas().length + 2">Medio impacto</td>
+          </tr>
+          @for (ind of medioImpacto(); track ind.id) {
+            <tr>
+              <td class="nombre">{{ ind.nombre }}</td>
+              <td class="siguiente">{{ formatearSiguiente(ind.siguienteFecha) }}</td>
+              @for (fecha of fechas(); track fecha) {
+                <td class="valor">{{ formatearValor(valorDe(ind.id, fecha)) }}</td>
               }
             </tr>
           }
@@ -64,14 +62,14 @@
       </table>
     </div>
 
-    <h2>Sección 2 — Tendencia proyectada del día por índice</h2>
+    <h2>Tendencia proyectada del día por índice</h2>
     <div class="scroll">
       <table class="tabla">
         <thead>
           <tr>
             <th>Índice</th>
             @for (fecha of fechas(); track fecha) {
-              <th>{{ fecha.slice(5) }}</th>
+              <th>{{ formatoDia(fecha) }}</th>
             }
           </tr>
         </thead>
@@ -80,7 +78,7 @@
             <tr>
               <td class="nombre">{{ fila.indice }}</td>
               @for (celda of fila.celdas; track $index) {
-                <td [class]="claseTendencia(celda)">{{ simboloTendencia(celda) }}</td>
+                <td [class]="claseTendencia(celda)">{{ celda }}</td>
               }
             </tr>
           }

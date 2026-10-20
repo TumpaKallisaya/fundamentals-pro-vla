@@ -6,6 +6,7 @@ import { DashboardService } from './dashboard.service';
 
 describe('DashboardComponent', () => {
   let service: {
+    consultarIndicadores: ReturnType<typeof vi.fn>;
     consultarEventos: ReturnType<typeof vi.fn>;
     consultarTendencias: ReturnType<typeof vi.fn>;
     ultimoRefresco: ReturnType<typeof vi.fn>;
@@ -14,6 +15,7 @@ describe('DashboardComponent', () => {
 
   beforeEach(async () => {
     service = {
+      consultarIndicadores: vi.fn().mockReturnValue(of([])),
       consultarEventos: vi.fn().mockReturnValue(of([])),
       consultarTendencias: vi.fn().mockReturnValue(of([])),
       ultimoRefresco: vi.fn().mockReturnValue(of(null)),
@@ -35,8 +37,8 @@ describe('DashboardComponent', () => {
     expect(fixture.componentInstance).toBeTruthy();
   });
 
-  it('should load events on init', () => {
+  it('should load indicators on init', () => {
     TestBed.createComponent(DashboardComponent).detectChanges();
-    expect(service.consultarEventos).toHaveBeenCalled();
+    expect(service.consultarIndicadores).toHaveBeenCalled();
   });
 });

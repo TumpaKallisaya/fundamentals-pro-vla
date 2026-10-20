@@ -1,5 +1,6 @@
 export type EstadoEvento = 'VERDE' | 'AMARILLO' | 'ROJO' | 'PENDIENTE';
 export type ClasificacionTendencia = 'ALCISTA' | 'NEUTRAL' | 'BAJISTA';
+export type Impacto = 'ALTO' | 'MEDIO';
 
 /** Evento con su resultado y clasificación (espejo del backend). */
 export interface EventoDto {
@@ -29,4 +30,13 @@ export interface RefrescoDto {
   detalle: string | null;
   iniciadoEnUtc: string;
   finalizadoEnUtc: string | null;
+}
+
+/** Indicador con su impacto y próxima fecha de publicación (espejo del backend). */
+export interface IndicadorDto {
+  id: string;
+  nombre: string;
+  impacto: Impacto;
+  aliasFf: string;
+  siguienteFecha: string | null;
 }

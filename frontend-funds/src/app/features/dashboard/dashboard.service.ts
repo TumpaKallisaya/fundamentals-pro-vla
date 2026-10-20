@@ -2,7 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { catchError, of } from 'rxjs';
 import { environment } from '../../../environments/environment';
-import { EventoDto, RefrescoDto, TendenciaDto } from './dashboard.model';
+import { EventoDto, IndicadorDto, RefrescoDto, TendenciaDto } from './dashboard.model';
 
 /**
  * Servicio de la feature `dashboard`: consume la API REST del backend.
@@ -16,19 +16,17 @@ export class DashboardService {
     return this.http.post<RefrescoDto>(`${this.base}/api/refresco`, {});
   }
 
-  consultarEventos(desde: string, hasta: string, indice?: string) {
-    let params = new HttpParams().set('desde', desde).set('hasta', hasta);
-    if (indice) {
-      params = params.set('indice', indice);
-    }
+  consultarIndicadores() {
+    return this.http.get<IndicadorDto[]>(`${this.base}/api/indicadores`);
+  }
+
+  consultarEventos(desde: string, hasta: string) {
+    const params = new HttpParams().set('desde', desde).set('hasta', hasta);
     return this.http.get<EventoDto[]>(`${this.base}/api/eventos`, { params });
   }
 
-  consultarTendencias(desde: string, hasta: string, indice?: string) {
-    let params = new HttpParams().set('desde', desde).set('hasta', hasta);
-    if (indice) {
-      params = params.set('indice', indice);
-    }
+  consultarTendencias(desde: string, hasta: string) {
+    const params = new HttpParams().set('desde', desde).set('hasta', hasta);
     return this.http.get<TendenciaDto[]>(`${this.base}/api/tendencias`, { params });
   }
 

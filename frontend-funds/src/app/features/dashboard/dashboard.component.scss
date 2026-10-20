@@ -8,30 +8,13 @@
   margin: 0 auto;
 }
 
-.filtros {
+mat-card-header {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   gap: 16px;
-  flex-wrap: wrap;
-  margin-bottom: 16px;
 
-  .campo {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    font-size: 0.85rem;
-    color: #555;
-
-    input[type='date'] {
-      padding: 8px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      font-size: 0.9rem;
-    }
-  }
-
-  .indice {
-    width: 180px;
+  button {
+    margin-left: auto;
   }
 }
 
@@ -63,7 +46,7 @@ h2 {
     padding: 6px;
     text-align: center;
     font-size: 0.78rem;
-    min-width: 22px;
+    min-width: 46px;
   }
 
   th {
@@ -74,29 +57,30 @@ h2 {
   .nombre {
     text-align: left;
     white-space: nowrap;
-    max-width: 240px;
+    max-width: 260px;
     overflow: hidden;
     text-overflow: ellipsis;
     position: sticky;
     left: 0;
     background: #fff;
+    min-width: 180px;
   }
-}
 
-.celda-verde {
-  background: #4caf50;
-}
+  .siguiente {
+    white-space: nowrap;
+    background: #fafafa;
+  }
 
-.celda-amarillo {
-  background: #ffeb3b;
-}
+  .valor {
+    font-weight: 500;
+  }
 
-.celda-rojo {
-  background: #f44336;
-}
-
-.celda-gris {
-  background: #e0e0e0;
+  .grupo td {
+    background: #eceff1;
+    font-weight: 700;
+    text-align: left;
+    padding: 6px 10px;
+  }
 }
 
 .celda-alcista {
