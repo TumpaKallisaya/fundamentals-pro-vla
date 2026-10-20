@@ -67,7 +67,7 @@ Guiate utilizando specs/mission.md y specs/tech-stack.md.
 
 Si requieres hacer preguntas para aclarar aspectos lógicos o técnicos pregunta antes de escribir a disco.
 
-## Prompt 8, 9 
+## Prompt 8, 9, 12
 
 Busca la siguiente fase en specs/roadmap.md. Pregúntame sobre la especificación de la funcionalidad.
 Crea:
@@ -98,3 +98,34 @@ Guiate utilizando specs/mission.md y specs/tech-stack.md.
 
 Si requieres hacer preguntas para aclarar aspectos lógicos o técnicos pregunta antes de escribir a disco.
 
+## Prompt 11
+
+Realiza las tareas para obtener el api key de fred y resguardala donde corresponda.
+
+Busca la siguiente fase en specs/roadmap.md. Pregúntame sobre la especificación de la funcionalidad.
+Crea:
+ - una nueva carpeta YYYY-MM-DD-funcionalidad-nombre debajo de specs para el trabajo de esta funcionalidad
+ 
+ - Ahí:
+  - plan.md como una serie de grupos de tareas numerados.
+  - requirements.md para el alcance, las decisiones y el contexto.
+  - validation.md para determinar si la implementación fue exitosa y puede integrarse al código principal.
+
+Guiate utilizando specs/mission.md y specs/tech-stack.md.
+
+Si requieres hacer preguntas para aclarar aspectos lógicos o técnicos pregunta antes de escribir a disco.
+
+## Prompt 12
+
+Busca la siguiente fase en specs/roadmap.md. Pregúntame sobre la especificación de la funcionalidad.
+Crea:
+ - una nueva carpeta YYYY-MM-DD-funcionalidad-nombre debajo de specs para el trabajo de esta funcionalidad
+ 
+ - Ahí:
+  - plan.md como una serie de grupos de tareas numerados.
+  - requirements.md para el alcance, las decisiones y el contexto.
+  - validation.md para determinar si la implementación fue exitosa y puede integrarse al código principal.
+
+Guiate utilizando specs/mission.md y specs/tech-stack.md.
+
+Si requieres hacer preguntas para aclarar aspectos lógicos o técnicos pregunta antes de escribir a disco.
