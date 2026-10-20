@@ -23,13 +23,16 @@ public class RefrescoService {
 
     private final RefrescoRepository refrescoRepository;
     private final SincronizarCalendarioService sincronizarCalendarioService;
+    private final BackfillHistoricoService backfillHistoricoService;
     private final CalcularTendenciasService calcularTendenciasService;
 
     public RefrescoService(RefrescoRepository refrescoRepository,
                            SincronizarCalendarioService sincronizarCalendarioService,
+                           BackfillHistoricoService backfillHistoricoService,
                            CalcularTendenciasService calcularTendenciasService) {
         this.refrescoRepository = refrescoRepository;
         this.sincronizarCalendarioService = sincronizarCalendarioService;
+        this.backfillHistoricoService = backfillHistoricoService;
         this.calcularTendenciasService = calcularTendenciasService;
     }
 
@@ -39,10 +42,12 @@ public class RefrescoService {
                 new Refresco(null, Instant.now(), null, EstadoRefresco.EN_PROCESO, null));
         try {
             int eventos = sincronizarCalendarioService.sincronizar();
-            calcularTendenciasService.calcular(refresco.id(), LocalDate.now(ET));
+            LocalDate hoy = LocalDate.now(ET);
+            int historicos = backfillHistoricoService.backfill(refresco.id(), hoy);
+            calcularTendenciasService.calcular(refresco.id(), hoy);
             Refresco cerrado = refrescoRepository.save(new Refresco(
                     refresco.id(), refresco.iniciadoEnUtc(), Instant.now(), EstadoRefresco.COMPLETADO,
-                    "Eventos sincronizados: " + eventos));
+                    "Eventos sincronizados: " + eventos + ", históricos: " + historicos));
             return toDto(cerrado);
         } catch (Exception e) {
             Refresco error = refrescoRepository.save(new Refresco(

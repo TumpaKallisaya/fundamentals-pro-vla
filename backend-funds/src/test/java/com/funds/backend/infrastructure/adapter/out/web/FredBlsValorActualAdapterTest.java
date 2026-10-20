@@ -56,4 +56,23 @@ class FredBlsValorActualAdapterTest {
         List<BigDecimal> valores = List.of(new BigDecimal("4.2"), new BigDecimal("4.1"));
         assertThat(adapter.aplicarTransformacion(serie, valores)).isEqualByComparingTo("4.2");
     }
+
+    @Test
+    void transformaSerieDeCambio() {
+        FredSerie serie = new FredSerie("nonfarm_payrolls", "PAYEMS", "CAMBIO", new BigDecimal("1000"));
+        List<BigDecimal> obs = List.of(
+                new BigDecimal("160000"), new BigDecimal("159000"), new BigDecimal("157500"));
+        List<BigDecimal> valores = adapter.transformarSerie(serie, obs);
+        assertThat(valores).hasSize(2);
+        assertThat(valores.get(0)).isEqualByComparingTo("1000000");
+        assertThat(valores.get(1)).isEqualByComparingTo("1500000");
+    }
+
+    @Test
+    void transformaSerieDirecta() {
+        FredSerie serie = new FredSerie("tasa_desempleo", "UNRATE", "DIRECTA", BigDecimal.ONE);
+        List<BigDecimal> obs = List.of(new BigDecimal("4.2"), new BigDecimal("4.1"));
+        assertThat(adapter.transformarSerie(serie, obs))
+                .containsExactly(new BigDecimal("4.2"), new BigDecimal("4.1"));
+    }
 }

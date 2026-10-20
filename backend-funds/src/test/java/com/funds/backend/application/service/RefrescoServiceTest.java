@@ -32,6 +32,8 @@ class RefrescoServiceTest {
     @Mock
     private SincronizarCalendarioService sincronizarCalendarioService;
     @Mock
+    private BackfillHistoricoService backfillHistoricoService;
+    @Mock
     private CalcularTendenciasService calcularTendenciasService;
 
     @InjectMocks
@@ -49,6 +51,7 @@ class RefrescoServiceTest {
 
         assertThat(dto.id()).isEqualTo(1L);
         assertThat(dto.estado()).isEqualTo(EstadoRefresco.COMPLETADO);
+        verify(backfillHistoricoService).backfill(eq(1L), any(LocalDate.class));
         verify(calcularTendenciasService).calcular(eq(1L), any(LocalDate.class));
         verify(refrescoRepository, times(2)).save(any(Refresco.class));
     }

@@ -2,6 +2,8 @@ package com.funds.backend.domain.service;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import com.funds.backend.domain.model.Frecuencia;
@@ -70,5 +72,65 @@ public final class CalculadorProximaFecha {
                     .withDayOfMonth(LocalDate.of(anio, mesSig, 1).lengthOfMonth());
         }
         return Optional.of(cierre);
+    }
+
+    /**
+     * Devuelve las últimas {@code cantidad} fechas de publicación (la más reciente primero),
+     * todas menores o iguales a {@code hoy}.
+     */
+    public static List<LocalDate> fechasPrevias(Frecuencia frecuencia, LocalDate hoy, int cantidad) {
+        if (frecuencia == null || cantidad <= 0) {
+            return List.of();
+        }
+        List<LocalDate> fechas = new ArrayList<>();
+        switch (frecuencia.tipo()) {
+            case SEMANAL -> {
+                if (frecuencia.diaSemana() == null) {
+                    break;
+                }
+                LocalDate d = hoy;
+                while (d.getDayOfWeek() != frecuencia.diaSemana()) {
+                    d = d.minusDays(1);
+                }
+                for (int i = 0; i < cantidad; i++) {
+                    fechas.add(d);
+                    d = d.minusDays(7);
+                }
+            }
+            case MENSUAL -> {
+                if (frecuencia.diaMes() == null) {
+                    break;
+                }
+                int dia = Math.max(1, Math.min(frecuencia.diaMes(), 28));
+                LocalDate d = hoy.withDayOfMonth(Math.min(dia, hoy.lengthOfMonth()));
+                if (d.isAfter(hoy)) {
+                    d = d.minusMonths(1);
+                }
+                for (int i = 0; i < cantidad; i++) {
+                    fechas.add(d);
+                    d = d.minusMonths(1);
+                }
+            }
+            case TRIMESTRAL -> {
+                LocalDate d = cierreTrimestre(hoy);
+                if (d.isAfter(hoy)) {
+                    d = d.minusMonths(3);
+                }
+                for (int i = 0; i < cantidad; i++) {
+                    fechas.add(d);
+                    d = d.minusMonths(3);
+                }
+            }
+            case IRREGULAR -> {
+                // sin fechas predecibles
+            }
+        }
+        return fechas;
+    }
+
+    private static LocalDate cierreTrimestre(LocalDate fecha) {
+        int mes = ((fecha.getMonthValue() - 1) / 3 + 1) * 3;
+        return LocalDate.of(fecha.getYear(), mes, 1)
+                .withDayOfMonth(LocalDate.of(fecha.getYear(), mes, 1).lengthOfMonth());
     }
 }

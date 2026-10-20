@@ -54,4 +54,28 @@ class CalculadorProximaFechaTest {
         assertThat(CalculadorProximaFecha.siguienteFecha(irregular, LocalDate.of(2026, 10, 20)))
                 .isEmpty();
     }
+
+    @Test
+    void fechasPreviasSemanales() {
+        Frecuencia semanal = new Frecuencia(TipoFrecuencia.SEMANAL, DayOfWeek.THURSDAY, null);
+        LocalDate hoy = LocalDate.of(2026, 10, 20); // martes
+        assertThat(CalculadorProximaFecha.fechasPrevias(semanal, hoy, 3))
+                .containsExactly(
+                        LocalDate.of(2026, 10, 15),
+                        LocalDate.of(2026, 10, 8),
+                        LocalDate.of(2026, 10, 1)
+                );
+    }
+
+    @Test
+    void fechasPreviasMensuales() {
+        Frecuencia mensual = new Frecuencia(TipoFrecuencia.MENSUAL, null, 13);
+        LocalDate hoy = LocalDate.of(2026, 10, 20);
+        assertThat(CalculadorProximaFecha.fechasPrevias(mensual, hoy, 3))
+                .containsExactly(
+                        LocalDate.of(2026, 10, 13),
+                        LocalDate.of(2026, 9, 13),
+                        LocalDate.of(2026, 8, 13)
+                );
+    }
 }

@@ -58,21 +58,64 @@ public class FredBlsValorActualAdapter implements ValorActualPort {
             return Optional.empty();
         }
         try {
-            String body = restClient.get()
-                    .uri(FRED_URL + "?series_id=" + serie.serieId()
-                            + "&api_key=" + apiKey
-                            + "&file_type=json&sort_order=desc&limit=2")
-                    .retrieve()
-                    .body(String.class);
-            List<BigDecimal> valores = parsearObservaciones(body);
-            if (valores.size() < 2) {
+            int limit = "DIRECTA".equals(serie.transformacion()) ? 1 : 2;
+            List<BigDecimal> valores = fetchObservaciones(serie, limit);
+            if (valores.size() < limit) {
                 return Optional.empty();
             }
-            return Optional.of(aplicarTransformacion(serie, valores));
+            return Optional.of(transformarSerie(serie, valores).get(0));
         } catch (Exception e) {
             log.warn("No se pudo obtener el actual de FRED para {}: {}", indicadorId, e.getMessage());
             return Optional.empty();
         }
+    }
+
+    @Override
+    public List<BigDecimal> obtenerUltimos(String indicadorId, int cantidad) {
+        FredSerie serie = series.get(indicadorId);
+        if (serie == null || apiKey == null || apiKey.isBlank() || cantidad <= 0) {
+            return List.of();
+        }
+        try {
+            int limit = "DIRECTA".equals(serie.transformacion()) ? cantidad : cantidad + 1;
+            return transformarSerie(serie, fetchObservaciones(serie, limit));
+        } catch (Exception e) {
+            log.warn("No se pudo obtener el histórico de FRED para {}: {}", indicadorId, e.getMessage());
+            return List.of();
+        }
+    }
+
+    private List<BigDecimal> fetchObservaciones(FredSerie serie, int limit) {
+        String body = restClient.get()
+                .uri(FRED_URL + "?series_id=" + serie.serieId()
+                        + "&api_key=" + apiKey
+                        + "&file_type=json&sort_order=desc&limit=" + limit)
+                .retrieve()
+                .body(String.class);
+        try {
+            return parsearObservaciones(body);
+        } catch (IOException e) {
+            throw new IllegalStateException("No se pudo parsear la respuesta de FRED", e);
+        }
+    }
+
+    /**
+     * Convierte una lista de observaciones (descendentes) en valores "actuales", aplicando la
+     * transformación configurada. Para DIRECTA devuelve los valores tal cual; para CAMBIO y
+     * PCT_CAMBIO devuelve un valor por cada par consecutivo.
+     */
+    List<BigDecimal> transformarSerie(FredSerie serie, List<BigDecimal> observaciones) {        if (observaciones.isEmpty()) {
+            return List.of();
+        }
+        if ("DIRECTA".equals(serie.transformacion())) {
+            BigDecimal escala = serie.escala() == null ? BigDecimal.ONE : serie.escala();
+            return observaciones.stream().map(v -> v.multiply(escala)).toList();
+        }
+        List<BigDecimal> resultado = new ArrayList<>();
+        for (int i = 0; i < observaciones.size() - 1; i++) {
+            resultado.add(aplicarTransformacion(serie, List.of(observaciones.get(i), observaciones.get(i + 1))));
+        }
+        return resultado;
     }
 
     /** Parsea las observaciones de FRED (orden descendente) a valores numéricos. */
