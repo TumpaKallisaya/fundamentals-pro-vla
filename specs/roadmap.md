@@ -111,3 +111,17 @@ fechas (desde / hasta)** para consultar histórico (por defecto, el mes en curso
 - Evaluar nuevas fuentes específicas por sector.
 
 **Resultado**: la plataforma cubre múltiples mercados sin rediseñar el core.
+
+## Fase 9 — Reingeniería: dashboard según mockup y fuente Forex Factory (actual + histórico)
+
+- Redefinir la vista del dashboard según `MockupProyectado.xlsx`:
+  - Sección 1: indicadores agrupados por **impacto (alto/medio)**, columna **"siguiente fecha"**
+    y **20 días calendario**; cada celda muestra el **valor del resultado** (vacía si no hay dato).
+  - Sección 2: tendencia por índice (NAS100/SP500) en los mismos 20 días.
+  - Fechas en formato **dd/mm/YYYY**.
+- Fuente principal **Forex Factory** (API + scraping de su web) para obtener el **"actual"** de
+  forma inmediata y el **histórico de 20 días**.
+- **"Siguiente fecha"** de publicación por indicador, calculada desde el catálogo.
+
+**Resultado**: el dashboard muestra el histórico real de 20 días con los valores por indicador y
+la próxima fecha de publicación, actualizable con un clic.
