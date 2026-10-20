@@ -129,3 +129,20 @@ Crea:
 Guiate utilizando specs/mission.md y specs/tech-stack.md.
 
 Si requieres hacer preguntas para aclarar aspectos lógicos o técnicos pregunta antes de escribir a disco.
+
+## Prompt 13
+
+Utiliza el archivo MockupProyectado.xlsx de la carpeta specs, para redefinir la vista que debe mostrarse finalmente.
+Aclaraciones:
+ - en la sección 1, resultados por indicador, se deben mostrar todos los indicadores agrupados por indicadores de alto impacto e indicadores de medio impacto.
+ - solo se mostrara los 20 ultimos dias calendario.
+ - en la sección 1, cada celda debera tener la información del resultado presentado en ese día, los otros dias si no tiene ninguna información la celda debera estar vacia.
+ - cada indicador debera tener la siguiente fecha en la que saldra el resultado, esto podra ayudar a no buscar innecesariamente la información.
+ - utiliza principalmente la fuente de forex factory, si tiene api, o scrapping de su pagina web, prioriza obtener la información de forma inmediata, es decir que si la inofmración sale antes en la pagina web que la api, pues revisa la información en la pagina web y traela.
+ - la primera vez consulta la información en los 20 dias anteriores para traer la información historica de cada indicador y registra en las celdas de las fechas que correspondan.
+ - en la seccion 2 también deben estar solo los 20 ultimos días
+ - las fechas deben estar en el formatao dd/mm/YYYY
+ - Si es necesario corregir los archivos de constitución especialmente el roadmap realizalo como una nueva fase de reingenieria para ser desarrollada.
+ 
+ Si requieres hacer preguntas para aclarar aspectos lógicos o técnicos pregunta antes de escribir a disco.
+ 
